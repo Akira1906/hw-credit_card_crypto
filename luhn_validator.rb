@@ -9,7 +9,6 @@ module LuhnValidator
   # assumes: a local String called 'number' exists
   # returns: true/false whether last digit is correct
   def validate_checksum
-    # number = "17893729974"
     payload = calculate_payload(@number)
     sum = payload.join.chars.reduce(0) { |s, c| s + c.to_i }
     check_digit = (10 - (sum % 10)) % 10
@@ -19,11 +18,6 @@ module LuhnValidator
   private
 
   def calculate_payload(number)
-    number.chars[0..-2].reverse.map.with_index { |c, i| i.even? ? double_digit(c) : c }
+    number.chars[0..-2].reverse.map.with_index { |c, i| i.even? ? (c.to_i * 2).to_s : c }
   end
 end
-# class CreditCard
-#   include LuhnValidator
-# end
-# card = CreditCard.new
-# puts card.validate_checksum()

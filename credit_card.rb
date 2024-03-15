@@ -19,13 +19,13 @@ class CreditCard
   end
 
   # returns json string
-  def to_json(*_args)
+  def to_json(*args)
     {
       number: @number,
       expiration_date: @expiration_date,
       owner: @owner,
       credit_network: @credit_network
-    }.to_json
+    }.to_json(*args)
   end
 
   # returns all card information as single string
